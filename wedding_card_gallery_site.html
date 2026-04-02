@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+    />
+    <title>Wedding Invitation</title>
+    <meta name="description" content="Wedding invitation card" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      :root {
+        --bg-top: #fbf3ea;
+        --bg-bottom: #f3e4d2;
+        --panel: rgba(255, 250, 244, 0.88);
+        --panel-strong: rgba(255, 253, 250, 0.96);
+        --border: rgba(142, 91, 43, 0.2);
+        --gold: #b07a3a;
+        --gold-soft: rgba(176, 122, 58, 0.28);
+        --maroon: #6b2130;
+        --text: #2f241d;
+        --muted: #7a6253;
+        --shadow: 0 14px 36px rgba(88, 50, 22, 0.08);
+      }
+
+      html {
+        -webkit-text-size-adjust: 100%;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Inter", Arial, sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(
+            circle at top,
+            rgba(255, 255, 255, 0.75),
+            transparent 32%
+          ),
+          linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 100%);
+        min-height: 100vh;
+        position: relative;
+        overflow-x: hidden;
+      }
+
+      body::before,
+      body::after {
+        content: "";
+        position: fixed;
+        width: 160px;
+        height: 160px;
+        pointer-events: none;
+        z-index: 0;
+        opacity: 0.18;
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+
+      body::before {
+        top: 10px;
+        left: 6px;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cg fill='none' stroke='%23b07a3a' stroke-width='3'%3E%3Cpath d='M100 28c16 20 16 44 0 62C84 72 84 48 100 28Z'/%3E%3Cpath d='M62 58c20 2 34 14 40 32-22 4-38-4-50-22 2-4 6-8 10-10Z'/%3E%3Cpath d='M138 58c-20 2-34 14-40 32 22 4 38-4 50-22-2-4-6-8-10-10Z'/%3E%3Cpath d='M100 92c10 8 16 18 18 30-12 0-24-8-30-18 2-4 6-8 12-12Z'/%3E%3Cpath d='M70 122c10-4 20-4 30 0-6 12-16 22-30 28-6-10-6-18 0-28Z'/%3E%3Cpath d='M130 122c-10-4-20-4-30 0 6 12 16 22 30 28 6-10 6-18 0-28Z'/%3E%3C/g%3E%3C/svg%3E");
+      }
+
+      body::after {
+        bottom: 8px;
+        right: 6px;
+        transform: scaleX(-1) rotate(180deg);
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cg fill='none' stroke='%236b2130' stroke-width='3'%3E%3Cpath d='M100 28c16 20 16 44 0 62C84 72 84 48 100 28Z'/%3E%3Cpath d='M62 58c20 2 34 14 40 32-22 4-38-4-50-22 2-4 6-8 10-10Z'/%3E%3Cpath d='M138 58c-20 2-34 14-40 32 22 4 38-4 50-22-2-4-6-8-10-10Z'/%3E%3Cpath d='M100 92c10 8 16 18 18 30-12 0-24-8-30-18 2-4 6-8 12-12Z'/%3E%3Cpath d='M70 122c10-4 20-4 30 0-6 12-16 22-30 28-6-10-6-18 0-28Z'/%3E%3Cpath d='M130 122c-10-4-20-4-30 0 6 12 16 22 30 28 6-10 6-18 0-28Z'/%3E%3C/g%3E%3C/svg%3E");
+      }
+
+      .frame-lines {
+        position: fixed;
+        inset: 10px;
+        border: 1px solid rgba(176, 122, 58, 0.14);
+        pointer-events: none;
+        z-index: 0;
+        border-radius: 22px;
+      }
+
+      .frame-lines::before {
+        content: "";
+        position: absolute;
+        inset: 8px;
+        border: 1px solid rgba(107, 33, 48, 0.08);
+        border-radius: 18px;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        padding: 14px 16px 12px;
+        text-align: center;
+        background: rgba(251, 243, 234, 0.74);
+        backdrop-filter: blur(16px);
+        border-bottom: 1px solid rgba(176, 122, 58, 0.1);
+      }
+
+      .eyebrow {
+        margin: 0;
+        font-family: "Cinzel", serif;
+        font-size: 0.74rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--gold);
+      }
+
+      .topbar h1 {
+        margin: 7px 0 0;
+        font-family: "Cormorant Garamond", serif;
+        font-size: 2rem;
+        font-weight: 700;
+        line-height: 1;
+        letter-spacing: 0.02em;
+        color: var(--maroon);
+      }
+
+      .topbar p {
+        margin: 6px 0 0;
+        color: var(--muted);
+        font-size: 0.84rem;
+        line-height: 1.45;
+      }
+
+      .ornament {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 10px;
+      }
+
+      .ornament::before,
+      .ornament::after {
+        content: "";
+        width: 52px;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--gold),
+          transparent
+        );
+      }
+
+      .ornament span {
+        color: var(--gold);
+        font-size: 0.95rem;
+        line-height: 1;
+      }
+
+      .viewer {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 16px 10px 34px;
+      }
+
+      .page {
+        position: relative;
+        margin: 0 0 18px;
+        padding: 10px;
+        border-radius: 28px;
+        background: linear-gradient(180deg, var(--panel-strong), var(--panel));
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+        content-visibility: auto;
+        contain-intrinsic-size: 1000px;
+      }
+
+      .page::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 28px;
+        padding: 1px;
+        background: linear-gradient(
+          135deg,
+          rgba(176, 122, 58, 0.38),
+          rgba(255, 255, 255, 0.24),
+          rgba(107, 33, 48, 0.14)
+        );
+        -webkit-mask:
+          linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
+      }
+
+      .page::after {
+        content: "";
+        position: absolute;
+        inset: 8px;
+        border: 1px solid rgba(176, 122, 58, 0.12);
+        border-radius: 22px;
+        pointer-events: none;
+      }
+
+      .image-shell {
+        overflow: hidden;
+        border-radius: 18px;
+        background: #f4ece6;
+        position: relative;
+        z-index: 1;
+      }
+
+      .page img {
+        display: block;
+        width: 100%;
+        height: auto;
+        background: #f2ebe5;
+      }
+
+      .page-separator {
+        width: 110px;
+        height: 18px;
+        margin: 12px auto 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .page-separator::before,
+      .page-separator::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--gold),
+          transparent
+        );
+      }
+
+      .page-separator span {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        border: 1px solid rgba(176, 122, 58, 0.34);
+        background: radial-gradient(
+          circle at center,
+          rgba(176, 122, 58, 0.8) 0 35%,
+          rgba(176, 122, 58, 0.15) 36% 100%
+        );
+        display: block;
+      }
+
+      .footer-note {
+        text-align: center;
+        padding: 10px 0 14px;
+        color: var(--maroon);
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.05rem;
+        letter-spacing: 0.04em;
+        position: relative;
+        z-index: 1;
+      }
+
+      @media (max-width: 640px) {
+        body::before,
+        body::after {
+          width: 110px;
+          height: 110px;
+          opacity: 0.14;
+        }
+
+        .frame-lines {
+          inset: 6px;
+          border-radius: 16px;
+        }
+
+        .frame-lines::before {
+          inset: 5px;
+          border-radius: 12px;
+        }
+      }
+
+      @media (min-width: 768px) {
+        .topbar {
+          padding: 18px 20px 14px;
+        }
+
+        .topbar h1 {
+          font-size: 2.8rem;
+        }
+
+        .topbar p {
+          font-size: 0.95rem;
+        }
+
+        .viewer {
+          padding: 24px 18px 42px;
+        }
+
+        .page {
+          margin-bottom: 24px;
+          padding: 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="frame-lines" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <p class="eyebrow">Aakash Weds Shivangi</p>
+
+      <div class="ornament" aria-hidden="true"><span>❁</span></div>
+    </header>
+
+    <main class="viewer">
+      <section class="page">
+        <div class="image-shell">
+          <img
+            src="images/card-1.jpg"
+            alt="Wedding card page 1"
+            fetchpriority="high"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+        <div class="page-separator" aria-hidden="true"><span></span></div>
+      </section>
+
+      <section class="page">
+        <div class="image-shell">
+          <img
+            src="images/card-2.jpg"
+            alt="Wedding card page 2"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <div class="page-separator" aria-hidden="true"><span></span></div>
+      </section>
+
+      <section class="page">
+        <div class="image-shell">
+          <img
+            src="images/card-3.jpg"
+            alt="Wedding card page 3"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <div class="page-separator" aria-hidden="true"><span></span></div>
+      </section>
+
+      <section class="page">
+        <div class="image-shell">
+          <img
+            src="images/card-4.jpg"
+            alt="Wedding card page 4"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <div class="page-separator" aria-hidden="true"><span></span></div>
+      </section>
+
+      <section class="page">
+        <div class="image-shell">
+          <img
+            src="images/card-5.jpg"
+            alt="Wedding card page 5"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </section>
+
+      <div class="footer-note">With warm regards and family blessings</div>
+    </main>
+  </body>
+</html>
